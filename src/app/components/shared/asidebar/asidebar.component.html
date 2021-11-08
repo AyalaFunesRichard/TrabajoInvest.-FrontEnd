@@ -1,0 +1,47 @@
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+
+                <a routerLink="/dashboard" routerLinkActive="active" class="nav-link">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Reporte general
+                </a>
+                <!--  -->
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#account_management"
+                    aria-expanded="false" aria-controls="account_management">
+                    <div class="sb-nav-link-icon"><i class="fas fa-address-book"></i></div>
+                    Gestión cuentas
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="account_management" aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a routerLink="/accounts-profiles" routerLinkActive="active" class="nav-link">Perfiles</a>
+                        <a routerLink="/accounts-users" routerLinkActive="active" class="nav-link">Usuarios</a>
+                    </nav>
+                </div>
+                <!--  -->
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#projects_management"
+                    aria-expanded="false" aria-controls="projects_management">
+                    <div class="sb-nav-link-icon"><i class="fas fa-folder-open"></i></div>
+                    Proyectos
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="projects_management" aria-labelledby="headingOne"
+                    data-bs-parent="#sidenavAccordion">
+                    <!-- <nav class="sb-sidenav-menu-nested nav" *ngFor="let item of projectList"> -->
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a routerLink="/project-schedule" routerLinkActive="active" class="nav-link"> Proy - Impulsa
+                            2021 </a>
+                    </nav>
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a routerLink="/create-project" routerLinkActive="active" class="nav-link">
+                            Crear projecto
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
