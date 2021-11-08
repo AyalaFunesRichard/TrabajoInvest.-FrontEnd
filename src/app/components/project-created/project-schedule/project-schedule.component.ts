@@ -244,13 +244,14 @@ export class ProjectScheduleComponent implements OnInit {
     return new Date(year, month, day);
   }
 
-  transfor_date_toString(textDate): string {
-    // console.log(textDate);
+  transfor_date_toString(textDate: string): string {
+    console.log(textDate);
 
     if (textDate == null || textDate == '') {
       let today: Date = new Date();
       textDate =
-        today.getFullYear() + '-' + today.getMonth() + '-' + today.getDay();
+        today.getUTCFullYear() + '-' + (today.getUTCMonth() + 1) + '-' + today.getUTCDate();
+        console.log("new date : " + textDate);
     }
 
     let splitted = textDate.split('-', 3);
@@ -263,7 +264,6 @@ export class ProjectScheduleComponent implements OnInit {
         month = 'enero';
         break;
       case '02':
-        '02';
         month = 'febrero';
         break;
       case '03':
