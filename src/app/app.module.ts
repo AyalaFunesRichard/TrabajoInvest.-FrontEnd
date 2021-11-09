@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'accounts-profiles', component: ProfilesComponent },
   { path: 'accounts-users', component: UsersComponent },
   { path: 'project-schedule', component: ProjectScheduleComponent },
-  // { path: '**', component: DashboardComponent },
+  { path: '**', component: DashboardComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
