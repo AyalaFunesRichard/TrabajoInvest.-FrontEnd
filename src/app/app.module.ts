@@ -5,7 +5,11 @@ import { GoogleChartsModule } from 'angular-google-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
-import { DatePipe } from '@angular/common';
+import {
+  DatePipe,
+  HashLocationStrategy,
+  LocationStrategy,
+} from '@angular/common';
 
 // Services
 import { ScriptControllerService } from './services/script-controller.service';
@@ -52,9 +56,13 @@ const routes: Routes = [
     GoogleChartsModule, // GoogleChart library
     HttpClientModule, // HttpClientModule - Spring
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
   ],
-  providers: [DatePipe, ScriptControllerService],
+  providers: [
+    DatePipe,
+    ScriptControllerService,
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
