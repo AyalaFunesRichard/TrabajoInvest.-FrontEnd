@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Cronograma } from 'src/app/models/Cronograma';
 
 @Injectable({
@@ -13,9 +13,8 @@ export class RestService {
 
   constructor(private http: HttpClient) {}
 
-  URL_GET = this._URL + 'getListaDetalle/';
   GetActivities() {
-
+    // ! eliminar
     // const headerDict = {
     //   Key: 'Id_Cronograma',
     //   Value: '1',
@@ -27,24 +26,36 @@ export class RestService {
     //   headers: new HttpHeaders(headerDict),
     // };
 
-    return this.http.get<Cronograma[]>(this.URL_GET);
+    let URL_GET = this._URL + 'getListaDetalle/';
+
+    // const headers = new Headers();
+    // headers.append('Access-Control-Allow-Headers', 'Content-Type');
+    // headers.append('Access-Control-Allow-Methods', 'GET');
+    // headers.append('Access-Control-Allow-Origin', '*');
+
+    // return this._http.get(URL_GET, {headers: headers})
+    //     .map(response => response.json());      
+
+    return this.http.get<Cronograma[]>(URL_GET); 
+    // return this.http.get<Cronograma[]>(URL_GET, {headers: headers});  // **
     // return this.http.get<Activity[]>(this.URL_GET, requestOptions);
+
+    
   }
 
-  URL_POST = this._URL + 'postCronograma/';
   PostActivity(newCronograma: Cronograma) {
-    
+    let URL_POST = this._URL + 'postCronograma/';
     
     let packgeIdStr: string = JSON.stringify(newCronograma);
-    console.log("packgeIdStr");
-    console.log(packgeIdStr);
+    // console.log("packgeIdStr");
+    // console.log(packgeIdStr);
     // const data = { stringArrDo: packgeIdStr, date: date };
     // const url = this.serviceAPI + '/...../retrieve';
 
-    console.log("rest.servive");
-    console.log(newCronograma);
+    // console.log("rest.servive");
+    // console.log(newCronograma);
 
-    return this.http.post(this.URL_POST, packgeIdStr);
+    return this.http.post(URL_POST, packgeIdStr);
     // return this.http.post(this.URL_POST, newCronograma);
     // return this.http.post<Cronograma>(this.URL_POST, newCronograma);
   }
