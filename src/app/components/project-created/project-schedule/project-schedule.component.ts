@@ -11,7 +11,8 @@ import { RestService } from '../../../services/api/rest.service';
 import { ScriptControllerService } from 'src/app/services/script-controller.service'; // TODO parece q no se va a usar
 
 // Function declare to reload
-// declare function UpdateColors(): void;  // TODO parece q no se va a usar
+declare function disableNewActivity(): any; 
+declare function updateChartHeight(newHeight): any; 
 
 @Component({
   selector: 'app-project-schedule',
@@ -22,6 +23,8 @@ export class ProjectScheduleComponent implements OnInit {
   chart: any;
   lstTableData: any[] = [];
   lstChartData: any[] = [];
+
+  chartHeight:number = 800;
 
   activityList: Cronograma[];
 
@@ -44,12 +47,23 @@ export class ProjectScheduleComponent implements OnInit {
       options: this.getChart_Config(),
     };
 
+
     //_loadScript.LoadScript(['google-chart/google-chart']);
 
     // UpdateColors();
   }
 
   // * FUNCTIONS ->
+  // private createGoogleChart(){
+  //   this.chart = {
+  //     title: 'Proy - Impulsa 2021',
+  //     data: [],
+  //     type: 'Gantt',
+  //     columnNames: this.getChart_Columns(),
+  //     options: this.getChart_Config(),
+  //   };
+  // }
+
   public postActivity(data) {
     if (data.id == null || data.id == '') {
       alert('Debe registrar el ID');
@@ -79,11 +93,12 @@ export class ProjectScheduleComponent implements OnInit {
       this.daysToMilliseconds(1) + ''
     );
 
-    console.log(newAux);
+    // console.log(newAux);
 
     // Fields validation
     this._restService.PostActivity(newAux).subscribe((value) => {
       alert('Actividad registrada');
+      disableNewActivity();      
     });
 
     // TODO: falta llamar la funcion alternar inputs
@@ -93,7 +108,7 @@ export class ProjectScheduleComponent implements OnInit {
     this._restService.GetActivities().subscribe((response) => {
       // Recover data
       this.activityList = response;
-      console.log(this.activityList);
+      // console.log(this.activityList);
 
       this.update_ChartAndTable();
 
@@ -125,7 +140,7 @@ export class ProjectScheduleComponent implements OnInit {
         this.verifyField(element['actividades_Previa'], '-'), // Dependencies
         element['fecha_Inicio'], // Start Date
         element['fecha_Fin'], // End Date
-        element['Presupuesto'], // Presupuesto
+        element['presupuesto'], // Presupuesto
         Number(element['completado']), //Percent Complete
       ]);
       // i++;
@@ -134,17 +149,8 @@ export class ProjectScheduleComponent implements OnInit {
     this.chart.data = this.lstChartData;
 
     // * Resize the gantt height
-    let rowHeight = 50;
-    this.chart.options['height'] = rowHeight * this.chart.data.length + 50;
-    console.log(this.chart.options.height);
-
-    console.log('this.lstChartData');
-    console.log(this.lstChartData);
-
-    console.log('this.lstTableData');
-    console.log(this.lstTableData);
-
-    // return auxLst;
+    let newHeight = this.chart.options.gantt.trackHeight * this.chart.data.length + 50;
+    updateChartHeight(newHeight);
   }
 
   getChart_Columns() {
@@ -164,6 +170,8 @@ export class ProjectScheduleComponent implements OnInit {
     return {
       height: 1950,
       gantt: {
+        sortTasks:false,
+        labelMaxWidth: 450,
         shadowColor: '#fc0388',
         trackHeight: 50,
         criticalPathEnabled: true,
@@ -245,13 +253,17 @@ export class ProjectScheduleComponent implements OnInit {
   }
 
   transfor_date_toString(textDate: string): string {
-    console.log(textDate);
+    // console.log(textDate);
 
     if (textDate == null || textDate == '') {
       let today: Date = new Date();
       textDate =
-        today.getUTCFullYear() + '-' + (today.getUTCMonth() + 1) + '-' + today.getUTCDate();
-        console.log("new date : " + textDate);
+        today.getUTCFullYear() +
+        '-' +
+        (today.getUTCMonth() + 1) +
+        '-' +
+        today.getUTCDate();
+      // console.log('new date : ' + textDate);
     }
 
     let splitted = textDate.split('-', 3);

@@ -7,8 +7,8 @@ import { FormsModule } from '@angular/forms';
 
 import {
   DatePipe,
-  // HashLocationStrategy,
-  // LocationStrategy,
+  HashLocationStrategy,
+  LocationStrategy,
 } from '@angular/common';
 
 // Services
@@ -61,7 +61,7 @@ const routes: Routes = [
   providers: [
     DatePipe,
     ScriptControllerService,
-    // { provide: LocationStrategy, useClass: HashLocationStrategy },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })

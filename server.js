@@ -3,9 +3,7 @@ const path = require('path');
 const app = express();
 
 app.use(express.static(__dirname + '/dist/tesina-project'));
-// app.use(express.static(__dirname + '/dist/tesina-project'));
 app.get('/*', function (req, res) {
-    // res.sendFile(path.join(__dirname + 'dist/tesina-project/index.html'));
     res.sendFile(path.join(__dirname + 'dist/tesina-project/index.html'));
 });
 app.listen(process.env.PORT || 3000, function () {

@@ -10,7 +10,6 @@ export class AsidebarComponent implements OnInit {
   public projectList: string[]; 
 
   constructor() {
-      // this.projectList = ['Proy - Impulsa 2021'];
       this.projectList = ['Desarrollo Avanzado 2022', 'Proy - Impulsa 2021', 'Educa Millenium 2022'];
    }
 

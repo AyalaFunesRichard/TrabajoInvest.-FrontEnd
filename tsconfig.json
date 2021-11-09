@@ -16,6 +16,5 @@
       "es2018",
       "dom"
     ],
-    // "resolveJsonModule": true // Added by my own
   }
 }
