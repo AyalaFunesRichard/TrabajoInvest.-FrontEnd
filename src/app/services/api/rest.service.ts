@@ -8,8 +8,8 @@ import { Cronograma } from 'src/app/models/Cronograma';
 })
 export class RestService {
   activity: Cronograma;
-  //  _URL: string = 'https://api-restfull-munoz-ayala.herokuapp.com/';
-    _URL: string = 'http://localhost:8080/';
+    _URL: string = 'https://api-restfull-munoz-ayala.herokuapp.com/';
+    // _URL: string = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) {}
 
