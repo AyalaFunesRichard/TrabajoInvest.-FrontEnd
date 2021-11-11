@@ -1,0 +1,17 @@
+#main-table input {
+  padding: 4px;
+}
+
+#main-table input[name="id"] {
+  min-width: 40px;
+}
+#main-table input[type="date"] {
+  max-width: 130px;
+}
+#main-table input[type="date"]::-webkit-calendar-picker-indicator {
+    margin-left: -15px;
+
+}
+#main-table input[type="number"] {
+  max-width: 70px;
+}
