@@ -34,7 +34,7 @@ export class ProjectScheduleComponent implements OnInit {
   constructor(
     private _restService: RestService,
     public _router: Router,
-    public _location: Location // private _loadScript: ScriptControllerService
+    public _location: Location
   ) {
     // Get activities from project
     this.getProjectData();
@@ -46,24 +46,9 @@ export class ProjectScheduleComponent implements OnInit {
       columnNames: this.getChart_Columns(),
       options: this.getChart_Config(),
     };
-
-
-    //_loadScript.LoadScript(['google-chart/google-chart']);
-
-    // UpdateColors();
   }
 
   // * FUNCTIONS ->
-  // private createGoogleChart(){
-  //   this.chart = {
-  //     title: 'Proy - Impulsa 2021',
-  //     data: [],
-  //     type: 'Gantt',
-  //     columnNames: this.getChart_Columns(),
-  //     options: this.getChart_Config(),
-  //   };
-  // }
-
   public postActivity(data) {
     if (data.id == null || data.id == '') {
       alert('Debe registrar el ID');
